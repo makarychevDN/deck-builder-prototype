@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 263475550639843234}
   - component: {fileID: 2529401141486527212}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Numbers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 3323647284731726915}
   character: {fileID: 7252375809671616443}
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 2529401141486527212}
 --- !u!1 &4568724669364160958
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 10
+  battleEffect: {fileID: 0}
+  target: {fileID: 0}
   onCurrentHealthChanged:
     m_PersistentCalls:
       m_Calls: []

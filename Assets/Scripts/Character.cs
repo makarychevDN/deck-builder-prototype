@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
 
-    public UnityEvent<int> onCurrentHealthChanged;
+    public UnityEvent<int> onCurrentHealthChanged = new();
 
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
