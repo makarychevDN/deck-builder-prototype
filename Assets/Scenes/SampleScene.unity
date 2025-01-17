@@ -191,7 +191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMyTurn: 0
   enemyTeam: {fileID: 0}
-  charactersList: []
+  charactersList:
+  - {fileID: 501614651}
+  - {fileID: 1900860722}
   OnTurnEnded:
     m_PersistentCalls:
       m_Calls: []
@@ -297,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5599219708225596623, guid: 29c090a5fecaa6f489a72b9f95c2ab48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.9152508
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5599219708225596623, guid: 29c090a5fecaa6f489a72b9f95c2ab48, type: 3}
       propertyPath: m_LocalPosition.y
@@ -523,7 +525,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -682,7 +684,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMyTurn: 0
   enemyTeam: {fileID: 0}
-  charactersList: []
+  charactersList:
+  - {fileID: 1276160672}
   OnTurnEnded:
     m_PersistentCalls:
       m_Calls: []
@@ -776,7 +779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5599219708225596623, guid: 29c090a5fecaa6f489a72b9f95c2ab48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.042497
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5599219708225596623, guid: 29c090a5fecaa6f489a72b9f95c2ab48, type: 3}
       propertyPath: m_LocalPosition.y
@@ -832,6 +835,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5599219708225596623, guid: 29c090a5fecaa6f489a72b9f95c2ab48, type: 3}
   m_PrefabInstance: {fileID: 1900860720}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1900860722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8948794408383729203, guid: 29c090a5fecaa6f489a72b9f95c2ab48, type: 3}
+  m_PrefabInstance: {fileID: 1900860720}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c31bbf2e458864ba1baf574c260b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &466504128086613396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -854,7 +868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 466504126847418524, guid: 261e9443c1ee7a14ea7cb65d4541a21f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 466504126847418524, guid: 261e9443c1ee7a14ea7cb65d4541a21f, type: 3}
       propertyPath: m_LocalPosition.y

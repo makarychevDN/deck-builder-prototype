@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
+    [SerializeField] private Animator animator;
     [SerializeField] private List<BaseBattleEffect> availableBattleEffects;
     public UnityEvent<int> onCurrentHealthChanged = new();
 
@@ -17,5 +18,6 @@ public class Character : MonoBehaviour
     {
         currentHealth -= damage;
         onCurrentHealthChanged?.Invoke(currentHealth);
+        animator.SetTrigger("Take Damage");
     }
 }
