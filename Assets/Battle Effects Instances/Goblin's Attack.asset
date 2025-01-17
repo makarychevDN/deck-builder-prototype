@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c2a8c578d043b46bbe57472af4efbe, type: 3}
   m_Name: Goblin's Attack
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 8

@@ -1,10 +1,20 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BaseInput : MonoBehaviour
+public abstract class BaseInput : MonoBehaviour
 {
     [SerializeField] protected bool isMyTurn;
+    [SerializeField] protected BaseInput enemyTeam;
+    [SerializeField] protected List<Character> charactersList;
     public UnityEvent OnTurnEnded;
+
+    public List<Character> CharactersList => charactersList;
+
+    public void Init(BaseInput enemyTeam)
+    {
+        this.enemyTeam = enemyTeam;
+    }
 
     public virtual void StartTurn()
     {
