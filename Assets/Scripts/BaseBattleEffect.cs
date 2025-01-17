@@ -9,4 +9,6 @@ public abstract class BaseBattleEffect : MonoBehaviour
     public UnityEvent<string> OnEffectWithAnimationTypeUsed = new();
 
     public abstract Task UseEffectOnTargets(List<Character> targets);
+
+    public abstract Task UseEffectOnTarget(Character target);
 }

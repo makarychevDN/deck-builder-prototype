@@ -8,6 +8,8 @@ public class DealDamageBattleEffect : BaseBattleEffect
     [SerializeField] private int timeForWholeProcess = 1500;
     [SerializeField] private int timeBeforeImpact = 200;
 
+    public override Task UseEffectOnTarget(Character target) => UseEffectOnTargets(new List<Character> { target });
+
     public override async Task UseEffectOnTargets(List<Character> targets)
     {
         OnEffectWithAnimationTypeUsed.Invoke(animationType);
