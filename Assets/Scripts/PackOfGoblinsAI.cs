@@ -1,13 +1,13 @@
 public class PackOfGoblinsAI : BaseInput
 {
-    public override void StartTurn()
+    public async override void StartTurn()
     {
         base.StartTurn();
 
         print("goblins attack!");
         foreach (var character in charactersList)
         {
-            character.AvailableBattleEffects[0].UseEffectOnTargets(enemyTeam.CharactersList);
+            await character.AvailableBattleEffects[0].UseEffectOnTargets(enemyTeam.CharactersList);
         }
 
         EndTurn();

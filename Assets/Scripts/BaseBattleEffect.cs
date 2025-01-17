@@ -1,7 +1,12 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
-public abstract class BaseBattleEffect : ScriptableObject
+public abstract class BaseBattleEffect : MonoBehaviour
 {
-    public abstract void UseEffectOnTargets(List<Character> targets);
+    [SerializeField] protected string animationType;
+    public UnityEvent<string> OnEffectWithAnimationTypeUsed = new();
+
+    public abstract Task UseEffectOnTargets(List<Character> targets);
 }

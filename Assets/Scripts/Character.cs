@@ -14,6 +14,18 @@ public class Character : MonoBehaviour
     public int CurrentHealth => currentHealth;
     public List<BaseBattleEffect> AvailableBattleEffects => availableBattleEffects;
 
+    private void Awake()
+    {
+        availableBattleEffects.ForEach(battleEffect => 
+        battleEffect.OnEffectWithAnimationTypeUsed.AddListener(PlayAnimation)
+        );
+    }
+
+    private void PlayAnimation(string animationType)
+    {
+        animator.SetTrigger(animationType);
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
