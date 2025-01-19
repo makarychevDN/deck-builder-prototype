@@ -15,6 +15,8 @@ public class PlayerInput : BaseInput
     [SerializeField] private Transform handCardsParent;
     [SerializeField] private Transform discardPileCardsParent;
 
+    [SerializeField] private Transform immovableSelectedCardPoint;
+
     [SerializeField] private List<Card> drawPile;
     [SerializeField] private List<Card> hand;
     [SerializeField] private List<Card> discardPile;
@@ -183,6 +185,9 @@ public class PlayerInput : BaseInput
     {
         card.transform.SetParent(transform);
         selectedCard = card;
+
+        if (card.SelectedCardBehaviourType == SelectedCardBehaviourTypes.goToTheCenterOfHand)
+            card.transform.position = immovableSelectedCardPoint.transform.position;
     }
 
     public void UnselectCard(Card card)
