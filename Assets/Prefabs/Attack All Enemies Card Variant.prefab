@@ -100,6 +100,14 @@ PrefabInstance:
       propertyPath: battleEffect
       value: 
       objectReference: {fileID: 2516071147172666885}
+    - target: {fileID: 8219198184125425649, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
+      propertyPath: targetsForCardSelector
+      value: 
+      objectReference: {fileID: 3686773134327831830}
+    - target: {fileID: 8219198184125425649, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
+      propertyPath: selectedCardBehaviourType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -107,6 +115,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2393868803752558810, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2516071147172666885}
+    - targetCorrespondingSourceObject: {fileID: 2393868803752558810, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3686773134327831830}
   m_SourcePrefab: {fileID: 100100000, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
 --- !u!1 &5234614237124881135 stripped
 GameObject:
@@ -132,3 +143,15 @@ MonoBehaviour:
   damage: 3
   timeForWholeProcess: 1500
   timeBeforeImpact: 200
+--- !u!114 &3686773134327831830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5234614237124881135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00cd526322617e44b618fc5ef1ee2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -199,6 +199,7 @@ public class PlayerInput : BaseInput
     public void UseCard(Card card)
     {
         selectedCard = null;
+        card.TryToUseCard();
         DiscardCard(card);
     }
 }

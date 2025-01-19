@@ -7,8 +7,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [SerializeField] private Animator animator;
     [SerializeField] private BaseBattleEffect battleEffect;
     [SerializeField] private SelectedCardBehaviourTypes selectedCardBehaviourType;
+    [SerializeField] private TargetsForCardSelector targetsForCardSelector;
     private PlayerInput playerInput;
-    private bool isSelected = false;
 
     public BaseBattleEffect BattleEffect => battleEffect;
     public int Cost => cost;
@@ -17,6 +17,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void Init(PlayerInput playerInput)
     {
         this.playerInput = playerInput;
+        targetsForCardSelector.Init(playerInput);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -32,6 +33,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnPointerClick(PointerEventData eventData)
     {
         playerInput.HandleClickOnCard(this);
+    }
+
+    public void TryToUseCard()
+    {
+        var targets = targetsForCardSelector.SelectTargets();
+
+        if (targets == null)
+            return;
+
+        battleEffect.UseEffectOnTargets(targets);
     }
 }
 
