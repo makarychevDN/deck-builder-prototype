@@ -130,6 +130,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   animator: {fileID: 4647771440442454619}
+  battleEffect: {fileID: 0}
+  selectedCardBehaviourType: 0
+  targetsForCardSelector: {fileID: 0}
+  costLabel: {fileID: 2528384923970208376}
 --- !u!95 &4647771440442454619
 Animator:
   serializedVersion: 5
@@ -162,7 +166,7 @@ GameObject:
   - component: {fileID: 4455197550306155043}
   - component: {fileID: 2528384923970208376}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Card Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

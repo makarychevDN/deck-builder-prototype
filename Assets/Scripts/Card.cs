@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,6 +9,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [SerializeField] private BaseBattleEffect battleEffect;
     [SerializeField] private SelectedCardBehaviourTypes selectedCardBehaviourType;
     [SerializeField] private TargetsForCardSelector targetsForCardSelector;
+    [SerializeField] private TMP_Text costLabel;
     private PlayerInput playerInput;
 
     public BaseBattleEffect BattleEffect => battleEffect;
@@ -19,6 +21,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         this.playerInput = playerInput;
         targetsForCardSelector.Init(playerInput);
+        costLabel.text = cost.ToString();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
