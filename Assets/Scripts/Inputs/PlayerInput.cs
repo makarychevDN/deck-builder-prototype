@@ -6,19 +6,22 @@ using UnityEngine.UI;
 
 public class PlayerInput : BaseInput
 {
+    [Header("Stats")]
     [SerializeField] private int amountOfDrawingCardsPerTurn = 5;
 
+    [Header("Cards Interaction Setup")]
     [SerializeField] private int timeForCardsMovementBetweenPiles = 200;
     [SerializeField] private int heightOfUnselectCardZone = 250;
+
+    [Header("Children Links")]
     [SerializeField] private GameObject targetSelectorArrow;
     [SerializeField] private GameObject shadingCardsPanel;
-
+    [SerializeField] private Transform immovableSelectedCardPoint;
     [SerializeField] private Transform drawPileCardsParent;
     [SerializeField] private Transform handCardsParent;
     [SerializeField] private Transform discardPileCardsParent;
 
-    [SerializeField] private Transform immovableSelectedCardPoint;
-
+    [Header("Debug Piles")]
     [SerializeField] private List<Card> drawPile;
     [SerializeField] private List<Card> hand;
     [SerializeField] private List<Card> discardPile;
