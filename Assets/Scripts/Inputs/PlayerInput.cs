@@ -11,6 +11,7 @@ public class PlayerInput : BaseInput
     [SerializeField] private int timeForCardsMovementBetweenPiles = 200;
     [SerializeField] private int heightOfUnselectCardZone = 250;
     [SerializeField] private GameObject targetSelectorArrow;
+    [SerializeField] private GameObject shadingCardsPanel;
 
     [SerializeField] private Transform drawPileCardsParent;
     [SerializeField] private Transform handCardsParent;
@@ -54,7 +55,8 @@ public class PlayerInput : BaseInput
     {
         charactersList.ForEach(character => character.EnableSelectionCell(false));
         EnemyTeam.CharactersList.ForEach(character => character.EnableSelectionCell(false));
-        targetSelectorArrow.gameObject.SetActive(false);
+        targetSelectorArrow.SetActive(false);
+        shadingCardsPanel.SetActive(false);
 
         if (!isMyTurn)
             return;
@@ -193,6 +195,8 @@ public class PlayerInput : BaseInput
 
     private void ControlSelectedCard()
     {
+        shadingCardsPanel.SetActive(true);
+
         if (selectedCard.SelectedCardBehaviourType == SelectedCardBehaviourTypes.followMouse)
             selectedCard.transform.position = Input.mousePosition;
         else
