@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private Animator animator;
     [SerializeField] private List<BaseBattleEffect> availableBattleEffects;
+    [SerializeField] private GameObject selectionCell;
     public UnityEvent<int> onCurrentHealthChanged = new();
 
     public int MaxHealth => maxHealth;
@@ -36,5 +37,10 @@ public class Character : MonoBehaviour
         currentHealth -= damage;
         onCurrentHealthChanged?.Invoke(currentHealth);
         animator.SetTrigger("Take Damage");
+    }
+
+    public void EnableSelectionCell(bool value)
+    {
+        selectionCell.SetActive(value);
     }
 }

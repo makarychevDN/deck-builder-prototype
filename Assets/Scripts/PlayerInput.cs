@@ -51,28 +51,16 @@ public class PlayerInput : BaseInput
 
     private void Update()
     {
+        charactersList.ForEach(character => character.EnableSelectionCell(false));
+        EnemyTeam.CharactersList.ForEach(character => character.EnableSelectionCell(false));
+
         if (!isMyTurn)
             return;
 
         if (selectedCard == null)
             return;
 
-        if(selectedCard.SelectedCardBehaviourType == SelectedCardBehaviourTypes.followMouse)
-        {
-            selectedCard.transform.position = Input.mousePosition;
-        }
-
-        if (!Input.GetKeyDown(KeyCode.Mouse0))
-            return;
-
-        if (Input.mousePosition.y < heightOfUnselectCardZone)
-        {
-            UnselectCard(selectedCard);
-        }
-        else
-        {
-            UseCard(selectedCard);
-        }
+        ControlSelectedCard();
     }
 
     public void SetAllCardsToDrawPile()
@@ -201,5 +189,39 @@ public class PlayerInput : BaseInput
         selectedCard = null;
         card.TryToUseCard();
         DiscardCard(card);
+    }
+
+    private void ControlSelectedCard()
+    {
+        if (selectedCard.SelectedCardBehaviourType == SelectedCardBehaviourTypes.followMouse)
+            selectedCard.transform.position = Input.mousePosition;
+
+        if (Input.mousePosition.y < heightOfUnselectCardZone)
+        {
+            UseCardUndernselectCardZone();
+        }
+        else
+        {
+            UseCardAboveUnselectCardZone();
+        }
+    }
+
+    private void UseCardAboveUnselectCardZone()
+    {
+        var targets = selectedCard.TargetsForCardSelector.SelectTargets();
+
+        if (targets == null || targets.Count == 0)
+            return;
+
+        targets.ForEach(character => character.EnableSelectionCell(true));
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            UseCard(selectedCard);
+    }
+
+    private void UseCardUndernselectCardZone()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            UnselectCard(selectedCard);
     }
 }

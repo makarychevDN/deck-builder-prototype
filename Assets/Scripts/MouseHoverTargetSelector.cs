@@ -8,7 +8,8 @@ public class MouseHoverTargetSelector : TargetsForCardSelector
 
     public override List<Character> SelectTargets()
     {
-        return new List<Character> { TryToGetCharacterByRaycast() };
+        var targets = TryToGetCharacterByRaycast();
+        return targets == null ? null : new List<Character> { targets };
     }
 
     private Character TryToGetCharacterByRaycast()

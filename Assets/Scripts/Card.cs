@@ -13,6 +13,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public BaseBattleEffect BattleEffect => battleEffect;
     public int Cost => cost;
     public SelectedCardBehaviourTypes SelectedCardBehaviourType => selectedCardBehaviourType;
+    public TargetsForCardSelector TargetsForCardSelector => targetsForCardSelector;
 
     public void Init(PlayerInput playerInput)
     {
