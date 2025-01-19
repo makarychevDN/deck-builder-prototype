@@ -6,10 +6,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [SerializeField] private int cost;
     [SerializeField] private Animator animator;
     [SerializeField] private BaseBattleEffect battleEffect;
+    [SerializeField] private SelectedCardBehaviourTypes selectedCardBehaviourType;
     private PlayerInput playerInput;
     private bool isSelected = false;
 
     public BaseBattleEffect BattleEffect => battleEffect;
+    public int Cost => cost;
+    public SelectedCardBehaviourTypes SelectedCardBehaviourType => selectedCardBehaviourType;
 
     public void Init(PlayerInput playerInput)
     {
@@ -26,20 +29,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         animator.SetBool("Hovered", false);
     }
 
-    public async void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        /*if(!isSelected)
-        {
-            playerInput.SelectCard(this);
-        }
-        else
-        {
-            playerInput.UnselectCard(this);
-        }
-
-        isSelected = !isSelected;*/
-
-        await playerInput.DiscardCard(this);
-        await battleEffect.UseEffectOnTargets(playerInput.EnemyTeam.CharactersList);
+        playerInput.HandleClickOnCard(this);
     }
+}
+
+public enum SelectedCardBehaviourTypes
+{
+    followMouse = 1,
+    goToTheCenterOfHand = 10
 }

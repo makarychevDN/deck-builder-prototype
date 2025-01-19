@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class PlayerInput : BaseInput
 {
     [SerializeField] private int amountOfDrawingCardsPerTurn = 5;
+
     [SerializeField] private int timeForCardsMovementBetweenPiles = 200;
+    [SerializeField] private int heightOfUnselectCardZone = 250;
 
     [SerializeField] private Transform drawPileCardsParent;
     [SerializeField] private Transform handCardsParent;
@@ -16,6 +18,8 @@ public class PlayerInput : BaseInput
     [SerializeField] private List<Card> drawPile;
     [SerializeField] private List<Card> hand;
     [SerializeField] private List<Card> discardPile;
+
+    private Card selectedCard;
 
     public override void Init(BaseInput enemyTeam)
     {
@@ -48,9 +52,24 @@ public class PlayerInput : BaseInput
         if (!isMyTurn)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (selectedCard == null)
+            return;
+
+        if(selectedCard.SelectedCardBehaviourType == SelectedCardBehaviourTypes.followMouse)
         {
-            EndTurn();
+            selectedCard.transform.position = Input.mousePosition;
+        }
+
+        if (!Input.GetKeyDown(KeyCode.Mouse0))
+            return;
+
+        if (Input.mousePosition.y < heightOfUnselectCardZone)
+        {
+            UnselectCard(selectedCard);
+        }
+        else
+        {
+            UseCard(selectedCard);
         }
     }
 
@@ -147,5 +166,34 @@ public class PlayerInput : BaseInput
         await Task.Delay(timeOfTransition);
         card.transform.SetParent(newParent);
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)newParent);
+    }
+
+    public void HandleClickOnCard(Card card)
+    {
+        print(Input.mousePosition.y);
+
+        if(selectedCard == null)
+        {
+            SelectCard(card);
+            return;
+        }
+    }
+
+    public void SelectCard(Card card)
+    {
+        card.transform.SetParent(transform);
+        selectedCard = card;
+    }
+
+    public void UnselectCard(Card card)
+    {
+        selectedCard = null;
+        card.transform.SetParent(handCardsParent);
+    }
+
+    public void UseCard(Card card)
+    {
+        selectedCard = null;
+        DiscardCard(card);
     }
 }
