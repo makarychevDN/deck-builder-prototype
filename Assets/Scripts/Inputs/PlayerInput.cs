@@ -20,6 +20,7 @@ public class PlayerInput : BaseInput
     [SerializeField] private Transform drawPileCardsParent;
     [SerializeField] private Transform handCardsParent;
     [SerializeField] private Transform discardPileCardsParent;
+    [SerializeField] private Button endTurnButton;
 
     [Header("Debug Piles")]
     [SerializeField] private List<Card> drawPile;
@@ -31,14 +32,15 @@ public class PlayerInput : BaseInput
     public override void Init(BaseInput enemyTeam)
     {
         base.Init(enemyTeam);
-        SetAllCardsToDrawPile();
 
+        endTurnButton.onClick.AddListener(EndTurn);
+
+        SetAllCardsToDrawPile();
         foreach(var card in drawPile) 
         { 
             card.Init(this);
             charactersList[0].AddAvailableBattleEffect(card.BattleEffect);
         }
-
         drawPile.Shuffle();
     }
 
