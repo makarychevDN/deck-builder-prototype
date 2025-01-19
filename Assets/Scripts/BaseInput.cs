@@ -10,10 +10,12 @@ public abstract class BaseInput : MonoBehaviour
     public UnityEvent OnTurnEnded;
 
     public List<Character> CharactersList => charactersList;
+    public BaseInput EnemyTeam => enemyTeam;
 
     public virtual void Init(BaseInput enemyTeam)
     {
         this.enemyTeam = enemyTeam;
+        charactersList.ForEach(character => character.Init());
     }
 
     public virtual void StartTurn()

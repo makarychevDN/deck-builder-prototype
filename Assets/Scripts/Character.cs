@@ -14,11 +14,16 @@ public class Character : MonoBehaviour
     public int CurrentHealth => currentHealth;
     public List<BaseBattleEffect> AvailableBattleEffects => availableBattleEffects;
 
-    private void Awake()
+    public void Init()
     {
         availableBattleEffects.ForEach(battleEffect => 
-        battleEffect.OnEffectWithAnimationTypeUsed.AddListener(PlayAnimation)
-        );
+            battleEffect.OnEffectWithAnimationTypeUsed.AddListener(PlayAnimation));
+    }
+
+    public void AddAvailableBattleEffect(BaseBattleEffect battleEffect)
+    {
+        availableBattleEffects.Add(battleEffect);
+        battleEffect.OnEffectWithAnimationTypeUsed.AddListener(PlayAnimation);
     }
 
     private void PlayAnimation(string animationType)

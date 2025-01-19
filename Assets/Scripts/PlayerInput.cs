@@ -21,6 +21,13 @@ public class PlayerInput : BaseInput
     {
         base.Init(enemyTeam);
         SetAllCardsToDrawPile();
+
+        foreach(var card in drawPile) 
+        { 
+            card.Init(this);
+            charactersList[0].AddAvailableBattleEffect(card.BattleEffect);
+        }
+
         drawPile.Shuffle();
     }
 
@@ -87,16 +94,24 @@ public class PlayerInput : BaseInput
     {
         for (int i = 0; i < cardsAmount; i++)
         {
-            await DiscardCard();
+            await DiscardFirstCardInHand();
         }
     }
 
-    public async Task DiscardCard()
+    public async Task DiscardFirstCardInHand()
     {
         if (hand.Count == 0)
             return;
 
         await MoveCardToDiscardPile(hand[0], hand);
+    }
+
+    public async Task DiscardCard(Card card)
+    {
+        if (!hand.Contains(card))
+            return;
+
+        await MoveCardToDiscardPile(card, hand);
     }
 
     public async Task ReturnCardsFromDiscardPileToDrawPile()
@@ -132,5 +147,15 @@ public class PlayerInput : BaseInput
         await Task.Delay(timeOfTransition);
         card.transform.SetParent(newParent);
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)newParent);
+    }
+
+    public void SelectCard(Card card)
+    {
+        card.transform.rotation = Quaternion.Euler(0, 0, 90);
+    }
+
+    public void UnselectCard(Card card)
+    {
+        card.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }
