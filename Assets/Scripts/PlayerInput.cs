@@ -148,14 +148,4 @@ public class PlayerInput : BaseInput
         card.transform.SetParent(newParent);
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)newParent);
     }
-
-    public void SelectCard(Card card)
-    {
-        card.transform.rotation = Quaternion.Euler(0, 0, 90);
-    }
-
-    public void UnselectCard(Card card)
-    {
-        card.transform.rotation = Quaternion.Euler(0, 0, 0);
-    }
 }
