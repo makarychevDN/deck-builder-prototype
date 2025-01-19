@@ -162,8 +162,6 @@ public class PlayerInput : BaseInput
 
     public void HandleClickOnCard(Card card)
     {
-        print(Input.mousePosition.y);
-
         if(selectedCard == null)
         {
             SelectCard(card);
