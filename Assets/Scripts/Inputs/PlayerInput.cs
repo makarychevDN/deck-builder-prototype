@@ -10,6 +10,7 @@ public class PlayerInput : BaseInput
 
     [SerializeField] private int timeForCardsMovementBetweenPiles = 200;
     [SerializeField] private int heightOfUnselectCardZone = 250;
+    [SerializeField] private GameObject targetSelectorArrow;
 
     [SerializeField] private Transform drawPileCardsParent;
     [SerializeField] private Transform handCardsParent;
@@ -53,6 +54,7 @@ public class PlayerInput : BaseInput
     {
         charactersList.ForEach(character => character.EnableSelectionCell(false));
         EnemyTeam.CharactersList.ForEach(character => character.EnableSelectionCell(false));
+        targetSelectorArrow.gameObject.SetActive(false);
 
         if (!isMyTurn)
             return;
@@ -195,6 +197,11 @@ public class PlayerInput : BaseInput
     {
         if (selectedCard.SelectedCardBehaviourType == SelectedCardBehaviourTypes.followMouse)
             selectedCard.transform.position = Input.mousePosition;
+        else
+        {
+            targetSelectorArrow.gameObject.SetActive(true);
+            PointArrowFromSelectedCardToMouse();
+        }
 
         if (Input.mousePosition.y < heightOfUnselectCardZone)
         {
@@ -223,5 +230,19 @@ public class PlayerInput : BaseInput
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
             UnselectCard(selectedCard);
+    }
+
+    private void PointArrowFromSelectedCardToMouse()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        Vector3 objectPosition = targetSelectorArrow.transform.position;
+
+        Vector3 direction = mousePosition - objectPosition;
+        float magnitude = Vector3.Magnitude(mousePosition - objectPosition);
+        float angle = Vector2.SignedAngle(Vector2.right, direction);
+
+        targetSelectorArrow.transform.rotation = Quaternion.Euler(0, 0, angle);
+        var arrowsRectTransform = (targetSelectorArrow.transform as RectTransform);
+        arrowsRectTransform.sizeDelta = new Vector2(magnitude, arrowsRectTransform.sizeDelta.y);
     }
 }
