@@ -11,7 +11,7 @@ public abstract class BaseInput : MonoBehaviour
 
     public List<Character> CharactersList => charactersList;
 
-    public void Init(BaseInput enemyTeam)
+    public virtual void Init(BaseInput enemyTeam)
     {
         this.enemyTeam = enemyTeam;
     }
