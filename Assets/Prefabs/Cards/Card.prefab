@@ -128,10 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a1cd3f8518ae44589100a168a1d514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0
+  energyCost: 0
   animator: {fileID: 4647771440442454619}
   battleEffect: {fileID: 0}
-  selectedCardBehaviourType: 0
+  selectedCardBehaviourType: 1
   targetsForCardSelector: {fileID: 0}
   costLabel: {fileID: 2528384923970208376}
 --- !u!95 &4647771440442454619
