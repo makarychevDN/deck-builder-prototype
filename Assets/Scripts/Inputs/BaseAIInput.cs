@@ -19,4 +19,10 @@ public abstract class BaseAIInput : BaseInput
         if(preparedBattleEffects.ContainsKey(character))
             preparedBattleEffects.Remove(character);
     }
+
+    public override void EndTurn()
+    {
+        base.EndTurn();
+        PrepareIntentions();
+    }
 }
