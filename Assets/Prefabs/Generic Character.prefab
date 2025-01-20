@@ -355,7 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 3323647284731726915}
   character: {fileID: 7252375809671616443}
-  healthBar: {fileID: 2529401141486527212}
+  textHealthValue: {fileID: 2529401141486527212}
 --- !u!1 &4176509874864038140
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,10 +770,10 @@ MonoBehaviour:
   animator: {fileID: 5143314885689293215}
   availableBattleEffects: []
   selectionCell: {fileID: 5762246108156004174}
-  onCurrentHealthChanged:
+  OnCurrentHealthChanged:
     m_PersistentCalls:
       m_Calls: []
-  onCurrentBlockChanged:
+  OnCurrentBlockChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!95 &5143314885689293215

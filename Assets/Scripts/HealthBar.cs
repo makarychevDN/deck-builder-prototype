@@ -6,7 +6,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private Character character;
-    [SerializeField] private TMP_Text healthBar;
+    [SerializeField] private TMP_Text textHealthValue;
 
     private void Awake()
     {
@@ -18,6 +18,6 @@ public class HealthBar : MonoBehaviour
     private void UpdateSliderValue(int updatedValue)
     {
         slider.value = updatedValue;
-        healthBar.text = $"{character.CurrentHealth} / {character.MaxHealth}";
+        textHealthValue.text = $"{character.CurrentHealth} / {character.MaxHealth}";
     }
 }
