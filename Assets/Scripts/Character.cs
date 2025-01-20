@@ -39,6 +39,13 @@ public class Character : MonoBehaviour
         animator.SetTrigger("Take Damage");
     }
 
+    public void TakeHealing(int healingValue)
+    {
+        currentHealth += healingValue;
+        onCurrentHealthChanged?.Invoke(currentHealth);
+        animator.SetTrigger("Take Healing");
+    }
+
     public void EnableSelectionCell(bool value)
     {
         selectionCell.SetActive(value);
