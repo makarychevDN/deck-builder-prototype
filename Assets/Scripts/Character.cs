@@ -6,17 +6,21 @@ public class Character : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
+    [SerializeField] private int currentBlock;
     [SerializeField] private Animator animator;
     [SerializeField] private List<BaseBattleEffect> availableBattleEffects;
     [SerializeField] private GameObject selectionCell;
     public UnityEvent<int> onCurrentHealthChanged = new();
+    public UnityEvent<int> onCurrentBlockChanged = new();
 
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
     public List<BaseBattleEffect> AvailableBattleEffects => availableBattleEffects;
 
-    public void Init()
+    public void Init(UnityEvent OnItsTurnStarted)
     {
+        OnItsTurnStarted.AddListener(ResetBlock);
+
         availableBattleEffects.ForEach(battleEffect => 
             battleEffect.OnEffectWithAnimationTypeUsed.AddListener(PlayAnimation));
     }
@@ -34,6 +38,16 @@ public class Character : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        var hashedDamage = damage;
+        damage -= currentBlock;
+        currentBlock -= hashedDamage;
+        currentBlock = Mathf.Clamp(currentBlock, 0, 999);
+        damage = Mathf.Clamp(damage, 0, 999);
+        onCurrentBlockChanged.Invoke(currentBlock);
+
+        if (damage == 0)
+            return;
+
         currentHealth -= damage;
         onCurrentHealthChanged?.Invoke(currentHealth);
         animator.SetTrigger("Take Damage");
@@ -44,6 +58,18 @@ public class Character : MonoBehaviour
         currentHealth += healingValue;
         onCurrentHealthChanged?.Invoke(currentHealth);
         animator.SetTrigger("Take Healing");
+    }
+
+    public void TakeBlock(int blockValue)
+    {
+        currentBlock += blockValue;
+        onCurrentBlockChanged.Invoke(currentBlock);
+    }
+
+    private void ResetBlock()
+    {
+        currentBlock = 0;
+        onCurrentBlockChanged.Invoke(currentBlock);
     }
 
     public void EnableSelectionCell(bool value)
