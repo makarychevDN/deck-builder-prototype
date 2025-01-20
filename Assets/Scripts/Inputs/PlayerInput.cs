@@ -215,12 +215,14 @@ public class PlayerInput : BaseInput
     {
         selectedCard = null;
         card.transform.SetParent(handCardsParent);
+        card.Hover(false);
     }
 
     public void UseCard(Card card)
     {
         selectedCard = null;
         card.TryToUseCard();
+        card.Hover(false);
         DiscardCard(card);
         currentEnergy -= card.EnergyCost;
         OnEnergyUpdated.Invoke(currentEnergy);

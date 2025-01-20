@@ -26,7 +26,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        animator.SetBool("Hovered", true);
+        Hover(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -34,7 +34,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         if (playerInput.SelectedCard == this)
             return;
 
-        animator.SetBool("Hovered", false);
+        Hover(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -50,7 +50,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             return;
 
         battleEffect.UseEffectOnTargets(targets);
-        animator.SetBool("Hovered", false);
+    }
+
+    public void Hover(bool isHovered)
+    {
+        animator.SetBool("Hovered", isHovered);
     }
 }
 
