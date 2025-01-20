@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2355696756233960442, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
+      propertyPath: m_text
+      value: "\u043F\u0435\u0440\u0435\u043A\u0443\u0440"
+      objectReference: {fileID: 0}
     - target: {fileID: 2393868803752558810, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
       propertyPath: m_Name
       value: Heal All Allies Card
@@ -96,6 +100,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5767111387924554930, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 338bcb5e8abe5b74eba7cc51fb4fdc0a, type: 3}
+    - target: {fileID: 7690569340540640604, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
+      propertyPath: m_text
+      value: "\u0438\u0441\u0446\u0435\u043B\u044F\u0435\u0442 4 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219198184125425649, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
+      propertyPath: energyCost
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8219198184125425649, guid: 52198a2530f9a4b4895a93760732b11f, type: 3}
       propertyPath: battleEffect
       value: 
@@ -138,7 +154,7 @@ MonoBehaviour:
   OnEffectWithAnimationTypeUsed:
     m_PersistentCalls:
       m_Calls: []
-  healingValue: 5
+  healingValue: 4
 --- !u!114 &2839696706467421251
 MonoBehaviour:
   m_ObjectHideFlags: 0
