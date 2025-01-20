@@ -38,8 +38,6 @@ public class PlayerInput : BaseInput
     {
         base.Init(enemyTeam);
 
-        endTurnButton.onClick.AddListener(EndTurn);
-
         SetAllCardsToDrawPile();
         foreach(var card in drawPile) 
         { 
@@ -47,6 +45,11 @@ public class PlayerInput : BaseInput
             charactersList[0].AddAvailableBattleEffect(card.BattleEffect);
         }
         drawPile.Shuffle();
+    }
+
+    private void Awake()
+    {
+        endTurnButton.onClick.AddListener(EndTurn);
     }
 
     public override async void StartTurn()
@@ -89,6 +92,8 @@ public class PlayerInput : BaseInput
         foreach (Card card in drawPile)
         {
             card.transform.SetParent(drawPileCardsParent);
+            card.transform.localPosition = Vector3.zero;
+            card.transform.localScale = Vector3.one;
         }
 
         hand.Clear();

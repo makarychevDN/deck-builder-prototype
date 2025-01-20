@@ -6,10 +6,7 @@ public class Encounter : MonoBehaviour
     [SerializeField] private BaseInput playerInput;
     [SerializeField] private BaseInput enemyInput;
 
-    private void Awake()
-    {
-        Init(playerInput);
-    }
+    public BaseInput EnemyInput => enemyInput;
 
     public void Init(BaseInput playerInput)
     {
@@ -21,5 +18,11 @@ public class Encounter : MonoBehaviour
         enemyInput.OnTurnEnded.AddListener(playerInput.StartTurn);
 
         playerInput.StartTurn();
+    }
+
+    public void Uninit()
+    {
+        playerInput.OnTurnEnded.RemoveListener(enemyInput.StartTurn);
+        enemyInput.OnTurnEnded.RemoveListener(playerInput.StartTurn);
     }
 }
