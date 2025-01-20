@@ -133,11 +133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252375809671616443, guid: 9ff4fd9bc7698074ba36406aa1b45d51, type: 3}
       propertyPath: maxHealth
-      value: 13
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7252375809671616443, guid: 9ff4fd9bc7698074ba36406aa1b45d51, type: 3}
       propertyPath: currentHealth
-      value: 13
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7252375809671616443, guid: 9ff4fd9bc7698074ba36406aa1b45d51, type: 3}
       propertyPath: availableBattleEffects.Array.size
