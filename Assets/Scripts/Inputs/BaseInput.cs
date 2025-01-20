@@ -38,7 +38,7 @@ public abstract class BaseInput : MonoBehaviour
         OnTurnEnded.Invoke();
     }
 
-    public async void RemoveCharacter(Character character)
+    public virtual async void RemoveCharacter(Character character)
     {
         await Task.Yield();
 

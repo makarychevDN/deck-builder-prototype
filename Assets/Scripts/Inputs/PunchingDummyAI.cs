@@ -1,17 +1,7 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class PunchingDummyAI : BaseInput
+public class PunchingDummyAI : BaseAIInput
 {
-    private Dictionary<Character, BaseBattleEffect> preparedBattleEffects = new();
-
-    public override void Init(BaseInput enemyTeam)
-    {
-        base.Init(enemyTeam);
-        PrepareIntentions();
-    }
-
     public async override void StartTurn()
     {
         base.StartTurn();
@@ -24,7 +14,7 @@ public class PunchingDummyAI : BaseInput
         EndTurn();
     }
 
-    private void PrepareIntentions()
+    protected override void PrepareIntentions()
     {
         foreach (var character in charactersList)
         {
