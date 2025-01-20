@@ -55,10 +55,12 @@ public class PlayerInput : BaseInput
         await DrawCards(amountOfDrawingCardsPerTurn);
         currentEnergy = maxEnergyAmount;
         OnEnergyUpdated.Invoke(currentEnergy);
+        endTurnButton.interactable = true;
     }
 
     public override async void EndTurn()
     {
+        endTurnButton.interactable = false;
         base.EndTurn();
         await DiscardCards(hand.Count);
     }
@@ -136,7 +138,9 @@ public class PlayerInput : BaseInput
         if (!hand.Contains(card))
             return;
 
+        endTurnButton.interactable = false;
         await MoveCardToDiscardPile(card, hand);
+        endTurnButton.interactable = true;
     }
 
     public async Task ReturnCardsFromDiscardPileToDrawPile()
