@@ -28,9 +28,13 @@ public class LegendaryTrioAI : BaseAIInput
         foreach (var character in charactersList)
         {
             if (preparedBattleEffects.ContainsKey(character))
+            {
                 preparedBattleEffects[character] = character.AvailableBattleEffects[0];
+            }
             else
+            {
                 preparedBattleEffects.Add(character, character.AvailableBattleEffects[0]);
+            }
 
             character.DisplayIntention(preparedBattleEffects[character]);
         }

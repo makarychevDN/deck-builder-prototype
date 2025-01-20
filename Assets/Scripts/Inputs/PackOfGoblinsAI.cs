@@ -21,9 +21,13 @@ public class PackOfGoblinsAI : BaseAIInput
         foreach (var character in charactersList)
         {
             if (preparedBattleEffects.ContainsKey(character))
+            {
                 preparedBattleEffects[character] = character.AvailableBattleEffects.GetRandomElement();
+            }
             else
+            {
                 preparedBattleEffects.Add(character, character.AvailableBattleEffects.GetRandomElement());
+            }
 
             character.DisplayIntention(preparedBattleEffects[character]);
         }
