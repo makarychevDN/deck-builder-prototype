@@ -6,6 +6,8 @@ public class HealingBattleEffect : BaseBattleEffect
 {
     [SerializeField] private int healingValue;
 
+    public override int GetValue() => healingValue;
+
     public override Task UseEffectOnTarget(Character target) => UseEffectOnTargets(new List<Character> { target });
 
     public override async Task UseEffectOnTargets(List<Character> targets)

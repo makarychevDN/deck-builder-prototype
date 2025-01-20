@@ -6,6 +6,8 @@ public class BlockBattleEffect : BaseBattleEffect
 {
     [SerializeField] private int blockValue;
 
+    public override int GetValue() => blockValue;
+
     public override Task UseEffectOnTarget(Character target) => UseEffectOnTargets(new List<Character> { target });
 
     public override async Task UseEffectOnTargets(List<Character> targets)

@@ -100,7 +100,7 @@ public class Character : MonoBehaviour
 
     public void DisplayIntention(BaseBattleEffect effect)
     {
-        intentionTextValue.text = "10";
+        intentionTextValue.text = effect.GetValue().ToString();
         intentionParent.SetActive(true);
         intentionIcon.sprite = GetSpriteByBattleEffect(effect);
     }

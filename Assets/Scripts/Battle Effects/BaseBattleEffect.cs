@@ -14,4 +14,6 @@ public abstract class BaseBattleEffect : MonoBehaviour
     public abstract Task UseEffectOnTargets(List<Character> targets);
 
     public abstract Task UseEffectOnTarget(Character target);
+
+    public abstract int GetValue();
 }
