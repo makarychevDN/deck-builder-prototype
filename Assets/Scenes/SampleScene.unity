@@ -530,7 +530,7 @@ MonoBehaviour:
   - {fileID: 2115126190}
   - {fileID: 549639538}
   - {fileID: 3934752393209687489}
-  endGameScreen: {fileID: 0}
+  endGameScreen: {fileID: 802086995}
   endGameScreenText: {fileID: 490186096}
   victoryEncounterScreen: {fileID: 767293983}
   restartButton: {fileID: 661305079}
