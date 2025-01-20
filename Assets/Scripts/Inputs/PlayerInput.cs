@@ -84,6 +84,11 @@ public class PlayerInput : BaseInput
         ControlSelectedCard();
     }
 
+    public void DisableEndTurnButton()
+    {
+        endTurnButton.interactable = false;
+    }
+
     public void SetAllCardsToDrawPile()
     {
         drawPile.AddRange(hand);

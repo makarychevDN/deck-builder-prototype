@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,17 +8,20 @@ using UnityEngine.UI;
 public class Floor : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private GameObject deathScreen;
+    [SerializeField] private List<Encounter> encounters;
+
+    [SerializeField] private GameObject endGameScreen;
+    [SerializeField] private TMP_Text endGameScreenText;
     [SerializeField] private GameObject victoryEncounterScreen;
     [SerializeField] private Button restartButton;
-    [SerializeField] private List<Encounter> encounters;
+
     [SerializeField] private Encounter currentEncounter;
     [SerializeField] private int currentEncounterIndex;
 
     private void Awake()
     {
         restartButton.onClick.AddListener(Restart);
-        playerInput.OnLose.AddListener(ShowDeathScreen);
+        playerInput.OnLose.AddListener(() => ShowEndGameScreen("Поражение"));
 
         currentEncounterIndex = -1;
         StartNextEncounter();
@@ -36,6 +40,7 @@ public class Floor : MonoBehaviour
 
         if(currentEncounterIndex >= encounters.Count)
         {
+            ShowEndGameScreen("Победа!");
             return;
         }
 
@@ -46,15 +51,16 @@ public class Floor : MonoBehaviour
         currentEncounter.EnemyInput.OnLose.AddListener(FinishEncounter);
     }
 
-    private void ShowDeathScreen()
+    private void ShowEndGameScreen(string screenText)
     {
-        deathScreen.SetActive(true);
+        endGameScreen.SetActive(true);
+        endGameScreenText.text = screenText;
     }
 
-    private void FinishEncounter()
+    private async void FinishEncounter()
     {
-        playerInput.SetAllCardsToDrawPile();
         victoryEncounterScreen.SetActive(true);
+        await Task.Delay(3000);
         victoryEncounterScreen.SetActive(false);
         StartNextEncounter();
     }

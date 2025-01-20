@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Encounter : MonoBehaviour
 {
-    [SerializeField] private BaseInput playerInput;
     [SerializeField] private BaseInput enemyInput;
+    private PlayerInput playerInput;
 
     public BaseInput EnemyInput => enemyInput;
 
-    public void Init(BaseInput playerInput)
+    public void Init(PlayerInput playerInput)
     {
         this.playerInput = playerInput;
         playerInput.Init(enemyInput);
@@ -16,6 +16,7 @@ public class Encounter : MonoBehaviour
 
         playerInput.OnTurnEnded.AddListener(enemyInput.StartTurn);
         enemyInput.OnTurnEnded.AddListener(playerInput.StartTurn);
+        enemyInput.OnLose.AddListener(playerInput.DisableEndTurnButton);
 
         playerInput.StartTurn();
     }
@@ -24,5 +25,6 @@ public class Encounter : MonoBehaviour
     {
         playerInput.OnTurnEnded.RemoveListener(enemyInput.StartTurn);
         enemyInput.OnTurnEnded.RemoveListener(playerInput.StartTurn);
+        enemyInput.OnLose.RemoveListener(playerInput.DisableEndTurnButton);
     }
 }
