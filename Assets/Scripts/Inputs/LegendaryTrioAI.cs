@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class LegendaryTrioAI : BaseInput
+public class LegendaryTrioAI : BaseAIInput
 {
     [SerializeField] private Character shieldHolder;
     [SerializeField] private Character archer;
@@ -15,20 +15,31 @@ public class LegendaryTrioAI : BaseInput
         base.StartTurn();
 
         if (shieldHolder != null)
-        {
-            await shieldHolder.AvailableBattleEffects[0].UseEffectOnTarget(charactersList.GetRandomElement());
-        }
+            await preparedBattleEffects[shieldHolder].UseEffectOnTarget(charactersList.GetRandomElement());
 
         if (archer != null)
-        {
-            await archer.AvailableBattleEffects[0].UseEffectOnTargets(enemyTeam.CharactersList);
-        }
+            await preparedBattleEffects[archer].UseEffectOnTargets(enemyTeam.CharactersList);
 
         if (cleric != null)
-        {
-            await cleric.AvailableBattleEffects[0].UseEffectOnTarget(charactersList.OrderBy(character => character.CurrentHealth).First());
-        }
+            await preparedBattleEffects[cleric].UseEffectOnTarget(charactersList.OrderBy(character => character.CurrentHealth).First());
 
         EndTurn();
+    }
+
+    protected override void PrepareIntentions()
+    {
+        foreach (var character in charactersList)
+        {
+            if (preparedBattleEffects.ContainsKey(character))
+            {
+                preparedBattleEffects[character] = character.AvailableBattleEffects[0];
+            }
+            else
+            {
+                preparedBattleEffects.Add(character, character.AvailableBattleEffects[0]);
+            }
+
+            character.DisplayIntention(preparedBattleEffects[character]);
+        }
     }
 }
