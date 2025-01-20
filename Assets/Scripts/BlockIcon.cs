@@ -10,7 +10,7 @@ public class BlockIcon : MonoBehaviour
 
     private void Awake()
     {
-        character.onCurrentBlockChanged.AddListener(UpdateBlockValue);
+        character.OnCurrentBlockChanged.AddListener(UpdateBlockValue);
     }
 
     private void UpdateBlockValue(int updatedValue)

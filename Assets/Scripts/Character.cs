@@ -10,8 +10,8 @@ public class Character : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private List<BaseBattleEffect> availableBattleEffects;
     [SerializeField] private GameObject selectionCell;
-    public UnityEvent<int> onCurrentHealthChanged = new();
-    public UnityEvent<int> onCurrentBlockChanged = new();
+    public UnityEvent<int> OnCurrentHealthChanged = new();
+    public UnityEvent<int> OnCurrentBlockChanged = new();
 
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
@@ -41,35 +41,37 @@ public class Character : MonoBehaviour
         var hashedDamage = damage;
         damage -= currentBlock;
         currentBlock -= hashedDamage;
+
         currentBlock = Mathf.Clamp(currentBlock, 0, 999);
         damage = Mathf.Clamp(damage, 0, 999);
-        onCurrentBlockChanged.Invoke(currentBlock);
+
+        OnCurrentBlockChanged.Invoke(currentBlock);
 
         if (damage == 0)
             return;
 
         currentHealth -= damage;
-        onCurrentHealthChanged?.Invoke(currentHealth);
+        OnCurrentHealthChanged?.Invoke(currentHealth);
         animator.SetTrigger("Take Damage");
     }
 
     public void TakeHealing(int healingValue)
     {
         currentHealth += healingValue;
-        onCurrentHealthChanged?.Invoke(currentHealth);
+        OnCurrentHealthChanged?.Invoke(currentHealth);
         animator.SetTrigger("Take Healing");
     }
 
     public void TakeBlock(int blockValue)
     {
         currentBlock += blockValue;
-        onCurrentBlockChanged.Invoke(currentBlock);
+        OnCurrentBlockChanged.Invoke(currentBlock);
     }
 
     private void ResetBlock()
     {
         currentBlock = 0;
-        onCurrentBlockChanged.Invoke(currentBlock);
+        OnCurrentBlockChanged.Invoke(currentBlock);
     }
 
     public void EnableSelectionCell(bool value)
