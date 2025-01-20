@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -10,6 +12,16 @@ public class Character : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private List<BaseBattleEffect> availableBattleEffects;
     [SerializeField] private GameObject selectionCell;
+
+    [Header("Intentions Setup")]
+    [SerializeField] private GameObject intentionParent;
+    [SerializeField] private Image intentionIcon;
+    [SerializeField] private Sprite intentionToAttackSprite;
+    [SerializeField] private Sprite intentionToDefenceSprite;
+    [SerializeField] private Sprite intentionToHealSprite;
+    [SerializeField] private TMP_Text intentionTextValue;
+
+
     public UnityEvent<int> OnCurrentHealthChanged = new();
     public UnityEvent<int> OnCurrentBlockChanged = new();
     public UnityEvent<Character> OnDeath = new();
@@ -84,5 +96,26 @@ public class Character : MonoBehaviour
     public void EnableSelectionCell(bool value)
     {
         selectionCell.SetActive(value);
+    }
+
+    public void DisplayIntention(BaseBattleEffect effect)
+    {
+        intentionTextValue.text = "10";
+        intentionParent.SetActive(true);
+        intentionIcon.sprite = GetSpriteByBattleEffect(effect);
+    }
+
+    private Sprite GetSpriteByBattleEffect(BaseBattleEffect effect)
+    {
+        if (effect is DealDamageBattleEffect)
+            return intentionToAttackSprite;
+
+        if (effect is BlockBattleEffect)
+            return intentionToDefenceSprite;
+
+        if (effect is HealingBattleEffect)
+            return intentionToHealSprite;
+
+        return null;
     }
 }
