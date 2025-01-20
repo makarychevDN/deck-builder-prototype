@@ -6,7 +6,6 @@ public class PackOfGoblinsAI : BaseInput
     {
         base.StartTurn();
 
-        print("goblins attack!");
         foreach (var character in charactersList)
         {
             var selectedEffect = character.AvailableBattleEffects.GetRandomElement();
