@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     [SerializeField] private GameObject selectionCell;
     public UnityEvent<int> OnCurrentHealthChanged = new();
     public UnityEvent<int> OnCurrentBlockChanged = new();
+    public UnityEvent<Character> OnDeath = new();
 
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
@@ -53,6 +54,11 @@ public class Character : MonoBehaviour
         currentHealth -= damage;
         OnCurrentHealthChanged?.Invoke(currentHealth);
         animator.SetTrigger("Take Damage");
+
+        if (currentHealth > 0)
+            return;
+        
+        OnDeath.Invoke(this);
     }
 
     public void TakeHealing(int healingValue)

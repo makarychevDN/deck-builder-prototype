@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,7 @@ public abstract class BaseInput : MonoBehaviour
     [SerializeField] protected List<Character> charactersList;
     public UnityEvent OnTurnEnded;
     public UnityEvent OnTurnStarted;
+    public UnityEvent OnLose;
 
     public List<Character> CharactersList => charactersList;
     public BaseInput EnemyTeam => enemyTeam;
@@ -16,7 +18,12 @@ public abstract class BaseInput : MonoBehaviour
     public virtual void Init(BaseInput enemyTeam)
     {
         this.enemyTeam = enemyTeam;
-        charactersList.ForEach(character => character.Init(OnTurnStarted));
+
+        foreach(var character in charactersList)
+        {
+            character.Init(OnTurnStarted);
+            character.OnDeath.AddListener(RemoveCharacter);
+        }
     }
 
     public virtual void StartTurn()
@@ -29,5 +36,16 @@ public abstract class BaseInput : MonoBehaviour
     {
         isMyTurn = false;
         OnTurnEnded.Invoke();
+    }
+
+    public async void RemoveCharacter(Character character)
+    {
+        await Task.Yield();
+
+        charactersList.Remove(character);
+        Destroy(character.gameObject);
+
+        if (charactersList.Count == 0)
+            OnLose.Invoke();
     }
 }
