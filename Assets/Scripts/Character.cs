@@ -64,6 +64,7 @@ public class Character : MonoBehaviour
     public void TakeHealing(int healingValue)
     {
         currentHealth += healingValue;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         OnCurrentHealthChanged?.Invoke(currentHealth);
         animator.SetTrigger("Take Healing");
     }
