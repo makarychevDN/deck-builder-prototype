@@ -70,12 +70,4 @@ public class Floor : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            playerInput.SetAllCardsToDrawPile();
-        }
-    }
 }
