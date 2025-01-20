@@ -61,8 +61,8 @@ public class PlayerInput : BaseInput
     public override async void EndTurn()
     {
         endTurnButton.interactable = false;
-        base.EndTurn();
         await DiscardCards(hand.Count);
+        base.EndTurn();
     }
 
     private void Update()
