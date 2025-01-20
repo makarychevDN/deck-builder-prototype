@@ -2,12 +2,15 @@ using DG.Tweening;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerInput : BaseInput
 {
     [Header("Stats")]
     [SerializeField] private int amountOfDrawingCardsPerTurn = 5;
+    [SerializeField] private int currentEnergy = 3;
+    [SerializeField] private int maxEnergyAmount = 3;
 
     [Header("Cards Interaction Setup")]
     [SerializeField] private int timeForCardsMovementBetweenPiles = 200;
@@ -29,6 +32,8 @@ public class PlayerInput : BaseInput
 
     private Card selectedCard;
 
+    public UnityEvent<int> OnEnergyUpdated = new();
+
     public override void Init(BaseInput enemyTeam)
     {
         base.Init(enemyTeam);
@@ -48,6 +53,8 @@ public class PlayerInput : BaseInput
     {
         base.StartTurn();
         await DrawCards(amountOfDrawingCardsPerTurn);
+        currentEnergy = maxEnergyAmount;
+        OnEnergyUpdated.Invoke(currentEnergy);
     }
 
     public override async void EndTurn()
@@ -178,6 +185,9 @@ public class PlayerInput : BaseInput
 
     public void SelectCard(Card card)
     {
+        if (card.EnergyCost > currentEnergy)
+            return;
+
         card.transform.SetParent(transform);
         selectedCard = card;
 
@@ -196,6 +206,8 @@ public class PlayerInput : BaseInput
         selectedCard = null;
         card.TryToUseCard();
         DiscardCard(card);
+        currentEnergy -= card.EnergyCost;
+        OnEnergyUpdated.Invoke(currentEnergy);
     }
 
     private void ControlSelectedCard()
@@ -203,7 +215,9 @@ public class PlayerInput : BaseInput
         shadingCardsPanel.SetActive(true);
 
         if (selectedCard.SelectedCardBehaviourType == SelectedCardBehaviourTypes.followMouse)
+        {
             selectedCard.transform.position = Input.mousePosition;
+        }
         else
         {
             targetSelectorArrow.gameObject.SetActive(true);

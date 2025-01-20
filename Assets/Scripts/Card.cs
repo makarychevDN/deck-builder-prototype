@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [SerializeField] private int cost;
+    [SerializeField] private int energyCost;
     [SerializeField] private Animator animator;
     [SerializeField] private BaseBattleEffect battleEffect;
     [SerializeField] private SelectedCardBehaviourTypes selectedCardBehaviourType;
@@ -13,7 +13,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private PlayerInput playerInput;
 
     public BaseBattleEffect BattleEffect => battleEffect;
-    public int Cost => cost;
+    public int EnergyCost => energyCost;
     public SelectedCardBehaviourTypes SelectedCardBehaviourType => selectedCardBehaviourType;
     public TargetsForCardSelector TargetsForCardSelector => targetsForCardSelector;
 
@@ -21,7 +21,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         this.playerInput = playerInput;
         targetsForCardSelector.Init(playerInput);
-        costLabel.text = cost.ToString();
+        costLabel.text = energyCost.ToString();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
