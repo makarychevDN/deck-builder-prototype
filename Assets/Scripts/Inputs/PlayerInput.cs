@@ -34,6 +34,8 @@ public class PlayerInput : BaseInput
 
     public UnityEvent<int> OnEnergyUpdated = new();
 
+    public Card SelectedCard => selectedCard;
+
     public override void Init(BaseInput enemyTeam)
     {
         base.Init(enemyTeam);
@@ -227,6 +229,12 @@ public class PlayerInput : BaseInput
     private void ControlSelectedCard()
     {
         shadingCardsPanel.SetActive(true);
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            UnselectCard(selectedCard);
+            return;
+        }
 
         if (selectedCard.SelectedCardBehaviourType == SelectedCardBehaviourTypes.followMouse)
         {

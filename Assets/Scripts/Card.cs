@@ -31,6 +31,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (playerInput.SelectedCard == this)
+            return;
+
         animator.SetBool("Hovered", false);
     }
 
@@ -47,6 +50,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             return;
 
         battleEffect.UseEffectOnTargets(targets);
+        animator.SetBool("Hovered", false);
     }
 }
 
