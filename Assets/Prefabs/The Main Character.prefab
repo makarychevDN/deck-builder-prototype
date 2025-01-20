@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6134308332519634247, guid: 9ff4fd9bc7698074ba36406aa1b45d51, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6134308332519634247, guid: 9ff4fd9bc7698074ba36406aa1b45d51, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71,6 +71,14 @@ PrefabInstance:
     - target: {fileID: 6134308332519634249, guid: 9ff4fd9bc7698074ba36406aa1b45d51, type: 3}
       propertyPath: m_Name
       value: The Main Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252375809671616443, guid: 9ff4fd9bc7698074ba36406aa1b45d51, type: 3}
+      propertyPath: maxHealth
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252375809671616443, guid: 9ff4fd9bc7698074ba36406aa1b45d51, type: 3}
+      propertyPath: currentHealth
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

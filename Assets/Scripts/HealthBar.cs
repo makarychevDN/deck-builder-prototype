@@ -13,6 +13,7 @@ public class HealthBar : MonoBehaviour
         slider.maxValue = character.MaxHealth;
         slider.value = character.CurrentHealth;
         character.OnCurrentHealthChanged.AddListener(UpdateSliderValue);
+        UpdateSliderValue(character.CurrentHealth);
     }
 
     private void UpdateSliderValue(int updatedValue)
