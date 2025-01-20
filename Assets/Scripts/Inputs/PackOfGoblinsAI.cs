@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class PackOfGoblinsAI : BaseInput
 {
     public async override void StartTurn()
@@ -7,7 +9,9 @@ public class PackOfGoblinsAI : BaseInput
         print("goblins attack!");
         foreach (var character in charactersList)
         {
-            await character.AvailableBattleEffects[0].UseEffectOnTargets(enemyTeam.CharactersList);
+            var selectedEffect = character.AvailableBattleEffects.GetRandomElement();
+            var targets = selectedEffect is BlockBattleEffect ? new List<Character>() { character } : enemyTeam.CharactersList;
+            await selectedEffect.UseEffectOnTargets(targets);
         }
 
         EndTurn();
