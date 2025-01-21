@@ -73,7 +73,7 @@ public class PlayerInput : BaseInput
     private void Update()
     {
         charactersList.ForEach(character => character.EnableSelectionCell(false));
-        EnemyTeam.CharactersList.ForEach(character => character.EnableSelectionCell(false));
+        OppositeTeam.CharactersList.ForEach(character => character.EnableSelectionCell(false));
         targetSelectorArrow.SetActive(false);
         shadingCardsPanel.SetActive(false);
 

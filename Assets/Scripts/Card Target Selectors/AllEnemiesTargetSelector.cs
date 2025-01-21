@@ -4,6 +4,6 @@ public class AllEnemiesTargetSelector : TargetsForCardSelector
 {
     public override List<Character> SelectTargets()
     {
-        return playerInput.EnemyTeam.CharactersList;
+        return playerInput.OppositeTeam.CharactersList;
     }
 }

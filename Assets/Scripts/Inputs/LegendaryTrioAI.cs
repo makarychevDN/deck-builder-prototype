@@ -15,7 +15,7 @@ public class LegendaryTrioAI : BaseAIInput
             await preparedBattleEffects[shieldHolder].UseEffectOnTarget(charactersList.GetRandomElement());
 
         if (archer != null)
-            await preparedBattleEffects[archer].UseEffectOnTargets(enemyTeam.CharactersList);
+            await preparedBattleEffects[archer].UseEffectOnTargets(oppositeTeam.CharactersList);
 
         if (cleric != null)
             await preparedBattleEffects[cleric].UseEffectOnTarget(charactersList.OrderBy(character => character.CurrentHealth).First());

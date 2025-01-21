@@ -9,7 +9,7 @@ public class PackOfGoblinsAI : BaseAIInput
         foreach (var character in charactersList)
         {
             var targets = preparedBattleEffects[character] is BlockBattleEffect ? 
-                new List<Character>() { character } : enemyTeam.CharactersList;
+                new List<Character>() { character } : oppositeTeam.CharactersList;
             await preparedBattleEffects[character].UseEffectOnTargets(targets);
         }
 

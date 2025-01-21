@@ -33,7 +33,7 @@ public class MouseHoverTargetSelector : TargetsForCardSelector
         if (!alliesIncluded && playerInput.CharactersList.Contains(target))
             return null;
 
-        if (!enemiesIncluded && playerInput.EnemyTeam.CharactersList.Contains(target))
+        if (!enemiesIncluded && playerInput.OppositeTeam.CharactersList.Contains(target))
             return null;
 
         return target;

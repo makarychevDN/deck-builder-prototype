@@ -6,18 +6,18 @@ using UnityEngine.Events;
 public abstract class BaseInput : MonoBehaviour
 {
     [SerializeField] protected bool isMyTurn;
-    [SerializeField] protected BaseInput enemyTeam;
+    [SerializeField] protected BaseInput oppositeTeam;
     [SerializeField] protected List<Character> charactersList;
     public UnityEvent OnTurnEnded;
     public UnityEvent OnTurnStarted;
     public UnityEvent OnLose;
 
     public List<Character> CharactersList => charactersList;
-    public BaseInput EnemyTeam => enemyTeam;
+    public BaseInput OppositeTeam => oppositeTeam;
 
     public virtual void Init(BaseInput enemyTeam)
     {
-        this.enemyTeam = enemyTeam;
+        this.oppositeTeam = enemyTeam;
 
         foreach(var character in charactersList)
         {
